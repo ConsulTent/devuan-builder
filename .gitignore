@@ -1,0 +1,5 @@
+output-virtualbox-iso/*
+packer_cache/*
+container.*
+*.manifest.json
+chef/*

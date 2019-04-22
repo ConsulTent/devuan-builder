@@ -1,0 +1,111 @@
+{
+  "variables": {
+    "ssh_name": "devuan",
+    "ssh_pass": "devuan"
+  },
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "resources/cloud-config.tgz",
+      "destination": "/tmp/cloud-config.tgz"
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/ec2_tweaks.sh",
+        "scripts/cloud-init.sh"
+      ]
+    },
+    {
+      "type": "chef-solo",
+      "version": "14.11.21",
+      "cookbook_paths": "chef/cookbooks",
+      "data_bags_path": "chef/data_bags",
+      "roles_path": "chef/roles"
+    }
+  ],
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+      "<esc><wait>",
+      "install <wait>",
+      " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-devuan-ec2.cfg <wait>",
+      "debian-installer=en_US.UTF-8 <wait>",
+      "auto <wait>",
+      "locale=en_US.UTF-8 <wait>",
+      "kbd-chooser/method=us <wait>",
+      "keyboard-configuration/xkb-keymap=us <wait>",
+      "netcfg/get_hostname={{ .Name }} <wait>",
+      "netcfg/get_domain=devuan.org <wait>",
+      "fb=false <wait>",
+      "debconf/frontend=noninteractive <wait>",
+      "console-setup/ask_detect=false <wait>",
+      "console-keymaps-at/keymap=us <wait>",
+      "grub-installer/bootdev=/dev/sda <wait>",
+"<enter><wait>"
+      ],
+      "boot_wait": "4s",
+      "guest_os_type": "Debian_64",
+      "iso_url": "http://devuan.c3l.lu/devuan_ascii/installer-iso/devuan_ascii_2.0.0_amd64_netinst.iso",
+      "iso_checksum": "c16bebdeecdf452188ae4bb823cd5f1c0d2ed3a7a568332508943ce16f7e5c71",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "{{user `ssh_name`}}",
+      "ssh_password": "{{user `ssh_pass`}}",
+      "http_directory" : "http",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "20m",
+      "ssh_pty": true,
+      "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S /sbin/shutdown -h now",
+      "post_shutdown_delay": "5s",
+      "headless": false,
+      "virtualbox_version_file": ".vbox_version",
+      "guest_additions_mode": "disable",
+      "vm_name": "{{user `hostname`}}",
+      "skip_export" : false,
+      "hard_drive_discard": true,
+      "disk_size": 2000,
+      "cpus": 2,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "1024"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--nic1",
+          "nat"
+        ]
+      ],
+      "export_opts":
+  [
+    "--manifest",
+    "--vsys", "0",
+    "--description", "{{user `vm_description`}}",
+    "--version", "{{user `build_version`}}"
+  ],
+  "format": "ovf"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "manifest",
+      "output": "{{user `hostname`}}.manifest.json",
+      "strip_path": false,
+      "custom_data": {
+        "ssh_name": "{{user `ssh_name`}}",
+        "ssh_pass": "{{user `ssh_pass`}}",
+        "hostname": "{{user `hostname`}}"
+      }
+    }
+  ]
+}
