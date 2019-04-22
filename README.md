@@ -25,4 +25,4 @@ Packer will download the Install ISO and build the image using VirtualBox.
 It will export the VM to OVA then upload the VMDK to S3, then import the snapshot.
 It will be up to you to monitor the conversion (example output will be provided).  You can then use the console (easiest) to convert the snapshot into an AMI.
 
-Use your public key to ssh in as admin@<instance ip>
+Use your public key to ssh in as `admin@<instance ip>`
