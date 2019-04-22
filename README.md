@@ -1,9 +1,5 @@
 
-<table><tr>
-<td align=left style="border: 0"><a href="http://consultent.ltd/" target="_blank"><img src="http://consultent.ltd/img/finalelogo.png"></a></td>
-<td align=center width=150  style="border: 0"></td>
-<td align=right  style="border: 0"><a href="https://devuan.org/os/init-freedom/" target="_blank"><img src="https://devuan.org/ui/img/if.png" width="110" height="150" align="right"></a></td>
-</tr></table>
+<a href="http://consultent.ltd" target="_blank">![](http://consultent.ltd/img/finalelogo.png)</a><a href="https://devuan.org/os/init-freedom/" target="_blank"><img src="https://devuan.org/ui/img/if.png" width="110" height="150" align="right"></a>
 
 # [Devuan](http://devuan.org/)-builder
   Reproducible build system for Devuan using Packer, Virtualbox and public cloud.
