@@ -1,4 +1,4 @@
-# devuan-builder
+# devuan-builder for EC2
 Reproducible build system for Devuan using Packer, Virtualbox and public cloud.
 
 ## Pre-requisites (OSX specific)
@@ -14,7 +14,7 @@ Reproducible build system for Devuan using Packer, Virtualbox and public cloud.
 
 
 
-**You're on the Devuan 2 (Ascii) Branch**
+**You're on the Devuan 2 (Ascii) Branch for AWS EC2**
 
 Make sure everything above is installed and your AWS account credentials
 are configured.  Edit build-devuan.sh and change variables as needed.  You don't have to, but you might want to (such as changing the mirror where you're downloading the ISO from).
