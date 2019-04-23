@@ -17,7 +17,7 @@ Reproducible build system for Devuan using Packer, Virtualbox and public cloud.
 **You're on the Devuan 2 (Ascii) Branch**
 
 Make sure everything above is installed and your AWS account credentials
-are configured.
+are configured.  Edit build-devuan.sh and change variables as needed.  You don't have to, but you might want to (such as changing the mirror where you're downloading the ISO from).
 
 Then run:  ./build-devuan.sh
 
