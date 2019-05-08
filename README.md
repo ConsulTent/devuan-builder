@@ -19,7 +19,7 @@
 * [2_ascii_ec2](https://github.com/ConsulTent/devuan-builder/tree/2_ascii_ec2)
   - Auto-build a vanilla Devuan AMI for EC2.
 * [2_ascii_alibaba_ecs](https://github.com/ConsulTent/devuan-builder/tree/2_ascii_alibaba_ecs)
-  - Auto-build a vanilla Devuan AMI for AliBabaCloud (AliYun) ECS
+  - Auto-build a vanilla Devuan ECS for AliBabaCloud (AliYun)
 
 
 ### Goals
