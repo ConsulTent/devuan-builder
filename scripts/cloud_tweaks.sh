@@ -37,9 +37,23 @@ echo devuan | sudo -S sed -i "s/^#AuthorizedKeysFile/AuthorizedKeysFile/" /etc/s
 echo devuan | sudo -S sed -i "s, .ssh/authorized_keys2$,,g" /etc/ssh/sshd_config
 echo devuan | sudo -S sed -i "s/^#PubkeyAuthentication/PubkeyAuthentication/" /etc/ssh/sshd_config
 echo devuan | sudo -S sed -i "s/^#PermitRootLogin prohibit-password/PermitRootLogin without-password/" /etc/ssh/sshd_config
-
 #Fix grub
 
 echo devuan | sudo -S sed -i 's/debian-installer=en_US.UTF-8/elevator=noop console=tty console=ttyS0 net.ifnames=0/g' /etc/default/grub
 echo devuan | sudo -S sed -i 's/^#GRUB_DISABLE_RECOVERY="true"/GRUB_DISABLE_RECOVERY="true"/g' /etc/default/grub
 echo devuan | sudo -S update-grub2
+
+echo devuan | sudo -S chown devuan /etc/motd
+cat <<"EOF" > /etc/motd
+A build by:
+   ___                      _ _____           _       __ _      _   
+  / __\___  _ __  ___ _   _| /__   \___ _ __ | |_    / /| |_ __| |  
+ / /  / _ \| '_ \/ __| | | | | / /\/ _ \ '_ \| __|  / / | __/ _` |  
+/ /__| (_) | | | \__ \ |_| | |/ / |  __/ | | | |_  / /__| || (_| |_ 
+\____/\___/|_| |_|___/\__,_|_|\/   \___|_| |_|\__| \____/\__\__,_(_)
+
+http://consultent.ltd/
+
+EOF
+
+echo devuan | sudo -S chown root /etc/motd

@@ -1,0 +1,20 @@
+The packer AliCloud post-processor importer doesn't work with VirtualBox.
+We have to import the image manually.
+
+
+This post-processor is here for reference:
+
+   {
+      "type":"alicloud-import",
+      "access_key":"{{user `access_key`}}",
+      "secret_key":"{{user `secret_key`}}",
+      "oss_bucket_name": "{{user `oss_bucket_name`}}",
+      "format": "VHD",
+      "image_name": "{{user `hostname`}}",
+      "image_os_type": "linux",
+      "image_platform": "Debian",
+      "image_architecture": "x86_64",
+      "image_system_size": "40",
+      "region":"{{user `region`}}"
+    }
+

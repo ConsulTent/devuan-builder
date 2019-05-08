@@ -12,7 +12,7 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/ec2_tweaks.sh",
+        "scripts/cloud_tweaks.sh",
         "scripts/cloud-init.sh"
       ]
     }
@@ -59,6 +59,7 @@
       "hard_drive_discard": true,
       "disk_size": 2000,
       "cpus": 2,
+      "output_directory": "output-virtualbox-iso",
       "vboxmanage": [
         [
           "modifyvm",
@@ -79,7 +80,7 @@
           "nat"
         ]
       ],
-      "export_opts":
+   "export_opts":
   [
     "--manifest",
     "--vsys", "0",
@@ -99,6 +100,10 @@
         "ssh_pass": "{{user `ssh_pass`}}",
         "hostname": "{{user `hostname`}}"
       }
+    },
+    {
+      "type": "shell-local",
+      "inline": ["VBoxManage clonemedium disk output-virtualbox-iso/{{user `hostname`}}-disk001.vmdk output-virtualbox-iso/virtualbox-{{user `hostname`}}.vhd --format VHD"]
     }
   ]
 }
