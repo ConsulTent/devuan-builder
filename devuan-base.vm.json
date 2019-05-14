@@ -57,7 +57,7 @@
       "vm_name": "{{user `hostname`}}",
       "skip_export" : false,
       "hard_drive_discard": true,
-      "disk_size": 2000,
+      "disk_size": "{{user `disk_size`}}",
       "cpus": 2,
       "output_directory": "output-virtualbox-iso",
       "vboxmanage": [
@@ -103,7 +103,7 @@
     },
     {
       "type": "shell-local",
-      "inline": ["VBoxManage clonemedium disk output-virtualbox-iso/{{user `hostname`}}-disk001.vmdk output-virtualbox-iso/virtualbox-{{user `hostname`}}.vhd --format VHD"]
+      "inline": ["VBoxManage clonemedium disk output-virtualbox-iso/{{user `hostname`}}-disk001.vmdk output-virtualbox-iso/virtualbox-{{user `hostname`}}.vhd --format VHD --variant Fixed"]
     }
   ]
 }
