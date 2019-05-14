@@ -20,6 +20,14 @@
   - Auto-build a vanilla Devuan AMI for EC2.
 * [2_ascii_alibaba_ecs](https://github.com/ConsulTent/devuan-builder/tree/2_ascii_alibaba_ecs)
   - Auto-build a vanilla Devuan ECS for AliBabaCloud (AliYun)
+* [2_ascii_azure](https://github.com/ConsulTent/devuan-builder/tree/2_ascii_azure)
+  - Auto-build and register a Devuan Image on Microsoft Azure.
+
+**Available Images**
+Below are public images available from this build system:
+1. EC2: Devuan 2 (Ascii), AMI ID: ami-0c5de3b8fdb3cf93a in us-east-1a
+2. AliBabaCloud: *devuan_ascii_2G_alibase_20190508.vhd*, contact us with your AliBaba Account ID for sharing.
+2. Azure [Public Blob, must create image](https://consultentfiles.blob.core.windows.net/devuan/devuan-ascii.vhd)
 
 
 ### Goals
